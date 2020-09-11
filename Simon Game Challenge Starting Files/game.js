@@ -39,7 +39,7 @@ let checkAnswer = (currentLevel) => {
     }
   } else {
     console.log("wrong");
-    playSound("wrong");
+    gameOver();
   }
 };
 
@@ -77,4 +77,23 @@ let animatePress = (currentColor) => {
   setTimeout(function () {
     $("#" + currentColor).removeClass("pressed");
   }, 100);
+};
+
+let gameOver = () => {
+  playSound("wrong");
+  $("body").addClass("game-over");
+
+  setTimeout(function () {
+    $("body").removeClass("game-over");
+  }, 400);
+
+  $("#level-title").text("Game Over press any key to restart");
+
+  startOver();
+};
+
+let startOver = () => {
+  level = 0;
+  gamePattern = [];
+  started = false;
 };
